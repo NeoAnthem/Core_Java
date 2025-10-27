@@ -24,6 +24,8 @@ public class UserInput {
 		isActive = input.nextBoolean();
 		
 		System.out.println("Active or not? "+isActive);
+		
+		input.close();
 	}
 
 }
