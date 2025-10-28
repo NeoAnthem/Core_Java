@@ -9,18 +9,15 @@ public class Wh3 {
         System.out.print("Enter a number: ");
         int n = sc.nextInt();
 
-        int i = 1;
+        int i = n;
         int fact = 1;
 
-        if (n < 0) {
-            System.out.println("Factorial is not defined for negative numbers.");
-        } else {
-            while (i <= n) {
-                fact = fact * i;
-                i++;
-            }
-            System.out.println("Factorial of " + n + " is: " + fact);
-        }
+		while(i >= 1) {
+			fact = fact * i;
+			
+			i--;
+		}
+		System.out.println("The factorial of "+n+" is "+ fact);
 
         sc.close();
 	}
