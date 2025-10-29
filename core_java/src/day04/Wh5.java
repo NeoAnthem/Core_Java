@@ -24,9 +24,7 @@ public class Wh5 {
 		}
 		
 		System.out.println("The sum of digit of "+n+" = "+sum);
+		sc.close();
 	}
 
 }
-
-// WAP to print number in reverse order
-// 183 -> 381
