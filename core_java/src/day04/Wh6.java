@@ -13,7 +13,7 @@ public class Wh6 {
         int num = sc.nextInt();
 
         int revNum = 0;
-        int temp = num;  
+        int i = num;  
 
         while (num != 0) {
             int lastDigit = num % 10;    
@@ -21,7 +21,7 @@ public class Wh6 {
             num = num / 10;   
         }
 
-        System.out.println("Original number : " + temp);
+        System.out.println("Original number : " + i);
         System.out.println("Reversed number : " + revNum);
 
         sc.close();
