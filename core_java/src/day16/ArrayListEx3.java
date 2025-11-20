@@ -26,3 +26,7 @@ public class ArrayListEx3 {
 
 // Employee -> name, empId, gender, salary
 // Store 5 empls in List
+
+// List of Numbers -> any order data store
+// Display that List, later on Sort the list in Asc then display
+// Sort in desc then display (do not use reverse)
