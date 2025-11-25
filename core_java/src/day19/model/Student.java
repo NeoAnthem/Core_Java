@@ -1,20 +1,18 @@
-package day18.model;
+package day19.model;
 
-public class Student implements Comparable<Student> {
-	
+public class Student {
+
 	private int rollNo;
-	
+
 	private String name;
-	
+
 	private String department;
-	
+
 	private double percentage;
-	
+
 	public Student() {
 		// TODO Auto-generated constructor stub
 	}
-
-	
 
 	public Student(int rollNo, String name, String department, double percentage) {
 		super();
@@ -30,27 +28,36 @@ public class Student implements Comparable<Student> {
 				+ percentage + "]";
 	}
 
+	public int getRollNo() {
+		return rollNo;
+	}
 
+	public void setRollNo(int rollNo) {
+		this.rollNo = rollNo;
+	}
 
-	@Override
-	public int compareTo(Student obj) {
-		// TODO Auto-generated method stub
-		
-//		return Integer.compare(rollNo, obj.rollNo);
-//		return Double.compare(percentage, obj.percentage);
-		
-//		return Integer.compare(name.length(), obj.name.length());
-		
-		return name.compareTo(obj.name);
-		
-//		if(rollNo < obj.rollNo) {
-//			return -1;
-//		}else if(rollNo >  obj.rollNo){
-//			return 1;
-//		}else {
-//			return 0;
-//			
-//		}
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public double getPercentage() {
+		return percentage;
+	}
+
+	public void setPercentage(double percentage) {
+		this.percentage = percentage;
 	}
 	
 	
