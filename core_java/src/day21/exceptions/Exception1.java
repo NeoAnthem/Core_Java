@@ -10,9 +10,7 @@ public class Exception1 {
 		try {
 			n2.length();
 			System.out.println(n1 / Integer.parseInt(n2));
-		} catch (ArithmeticException ae) {
-			System.out.println(ae.getMessage());
-		}catch (NumberFormatException e) {
+		} catch (ArithmeticException | NumberFormatException e) {
 			System.out.println(e.getMessage());
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
