@@ -155,6 +155,46 @@ public class StudentDao {
 		return false;
 	}
 
+	public int updateStudent(int rollNo, Student updatedStudent) throws Exception {
+
+		// Step 1: CHeck whether the student with rollNo exists or not?
+		Student dbStudent = getStudentByRollNo(rollNo);
+
+		// if student not exists then throw error
+		if (dbStudent == null) {
+			closeAll(connection, null, null);
+			throw new Exception("Student with roll no = " + rollNo + " not found");
+		}
+
+		String sql = "update student set first_name = ?, last_name = ?, gender = ? where roll_no = ?";
+		
+
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		if(updatedStudent.getFirstName() == null || updatedStudent.getFirstName().isBlank()) {
+			updatedStudent.setFirstName(dbStudent.getFirstName());
+		}
+		if(updatedStudent.getLastName() == null || updatedStudent.getLastName().isBlank()) {
+			updatedStudent.setLastName(dbStudent.getLastName());
+		}
+		if(updatedStudent.getGender() == null || updatedStudent.getGender().isBlank()) {
+			updatedStudent.setGender(dbStudent.getGender());
+		}
+		
+		preparedStatement.setString(1, updatedStudent.getFirstName());
+		preparedStatement.setString(2, updatedStudent.getLastName());
+		preparedStatement.setString(3, updatedStudent.getGender());
+		preparedStatement.setInt(4, rollNo);
+		
+		System.out.println(preparedStatement.toString());
+
+		int result = preparedStatement.executeUpdate();
+
+		closeAll(connection, preparedStatement, null);
+		
+
+		return result;
+	}
+
 	private void closeAll(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet)
 			throws SQLException {
 
