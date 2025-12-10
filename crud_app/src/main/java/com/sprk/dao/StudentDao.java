@@ -208,5 +208,28 @@ public class StudentDao {
 			resultSet.close();
 		}
 	}
+	// public wrapper matching CRUDMain.getStudentByRoll(...) usage
+	public Student getStudentByRoll(int rollNo) throws SQLException {
+	    // use the existing public findByRollNo method
+	    return findByRollNo(rollNo);
+	}
+
+	// public overload so CRUDMain can call updateStudent(Student)
+	public int updateStudent(Student student) throws Exception {
+	    if (student == null) {
+	        throw new Exception("Student object cannot be null");
+	    }
+	    int rollNo = student.getRollNo();
+	    // reuse existing updateStudent(int, Student)
+	    return updateStudent(rollNo, student);
+	}
+
+	// public wrapper to delete by roll and return int rowsAffected (0 or >0)
+	// This avoids changing your existing boolean deleteStudent(...) method
+	public int deleteStudentByRoll(int rollNo) throws Exception {
+	    // call existing boolean deleteStudent(rollNo)
+	    boolean deleted = deleteStudent(rollNo);
+	    return deleted ? 1 : 0;
+	}
 
 }
