@@ -9,18 +9,14 @@ import java.util.List;
 
 import com.sprk.model.Student;
 
-//Data Access Object Layer -> Repository
 public class StudentDao {
-
 	// Aggregation
 	private Connection connection;
 
 	public StudentDao(Connection connection) throws Exception {
-
 		if (connection == null) {
 			throw new Exception("Please Pass Connection To Proceed");
 		}
-
 		this.connection = connection;
 	}
 
@@ -121,7 +117,7 @@ public class StudentDao {
 			student.setAccCreatedAt(resultSet.getTimestamp("acc_created_at"));
 			student.setAccUpdatedAt(resultSet.getTimestamp("last_update"));
 		}
-		
+
 		closeAll(null, preparedStatement, resultSet);
 
 		return student;
@@ -166,31 +162,27 @@ public class StudentDao {
 			throw new Exception("Student with roll no = " + rollNo + " not found");
 		}
 
-		String sql = "update student set first_name = ?, last_name = ?, gender = ? where roll_no = ?";
-		
+		String sql = "update student set first_name = ?, last_name =?, Gender=? where roll_no = ?";
 
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		if(updatedStudent.getFirstName() == null || updatedStudent.getFirstName().isBlank()) {
+
+		if (updatedStudent.getFirstName() == null || updatedStudent.getFirstName().isBlank()) {
 			updatedStudent.setFirstName(dbStudent.getFirstName());
 		}
-		if(updatedStudent.getLastName() == null || updatedStudent.getLastName().isBlank()) {
+		if (updatedStudent.getLastName() == null || updatedStudent.getLastName().isBlank()) {
 			updatedStudent.setLastName(dbStudent.getLastName());
 		}
-		if(updatedStudent.getGender() == null || updatedStudent.getGender().isBlank()) {
+		if (updatedStudent.getGender() == null || updatedStudent.getGender().isBlank()) {
 			updatedStudent.setGender(dbStudent.getGender());
 		}
-		
 		preparedStatement.setString(1, updatedStudent.getFirstName());
 		preparedStatement.setString(2, updatedStudent.getLastName());
 		preparedStatement.setString(3, updatedStudent.getGender());
 		preparedStatement.setInt(4, rollNo);
-		
-		System.out.println(preparedStatement.toString());
 
 		int result = preparedStatement.executeUpdate();
 
 		closeAll(connection, preparedStatement, null);
-		
 
 		return result;
 	}
@@ -207,29 +199,6 @@ public class StudentDao {
 		if (resultSet != null) {
 			resultSet.close();
 		}
-	}
-	// public wrapper matching CRUDMain.getStudentByRoll(...) usage
-	public Student getStudentByRoll(int rollNo) throws SQLException {
-	    // use the existing public findByRollNo method
-	    return findByRollNo(rollNo);
-	}
-
-	// public overload so CRUDMain can call updateStudent(Student)
-	public int updateStudent(Student student) throws Exception {
-	    if (student == null) {
-	        throw new Exception("Student object cannot be null");
-	    }
-	    int rollNo = student.getRollNo();
-	    // reuse existing updateStudent(int, Student)
-	    return updateStudent(rollNo, student);
-	}
-
-	// public wrapper to delete by roll and return int rowsAffected (0 or >0)
-	// This avoids changing your existing boolean deleteStudent(...) method
-	public int deleteStudentByRoll(int rollNo) throws Exception {
-	    // call existing boolean deleteStudent(rollNo)
-	    boolean deleted = deleteStudent(rollNo);
-	    return deleted ? 1 : 0;
 	}
 
 }

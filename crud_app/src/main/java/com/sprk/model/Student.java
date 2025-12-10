@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class Student {
 	
-	private int rollNo;
+private int rollNo;
 	
 	private String firstName;
 
@@ -15,12 +15,17 @@ public class Student {
 	private Timestamp accCreatedAt;
 	
 	private Timestamp accUpdatedAt;
-	
 	public Student() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+
+	public Student(String firstName, String lastName, String gender) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+	}
 
 	public Student(int rollNo, String firstName, String lastName, String gender, Timestamp accCreatedAt,
 			Timestamp accUpdatedAt) {
@@ -32,18 +37,6 @@ public class Student {
 		this.accCreatedAt = accCreatedAt;
 		this.accUpdatedAt = accUpdatedAt;
 	}
-
-	
-
-
-	public Student(String firstName, String lastName, String gender) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.gender = gender;
-	}
-
-
 
 	public int getRollNo() {
 		return rollNo;
@@ -93,13 +86,9 @@ public class Student {
 		this.accUpdatedAt = accUpdatedAt;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Student [rollNo=" + rollNo + ", firstName=" + firstName + ", lastName=" + lastName + ", gender="
 				+ gender + ", accCreatedAt=" + accCreatedAt + ", accUpdatedAt=" + accUpdatedAt + "]";
 	}
-	
-	
 }
