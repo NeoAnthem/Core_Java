@@ -1,0 +1,23 @@
+package day26.threadings.part3.non_sync;
+
+public class MainThread {
+	
+	public static void main(String[] args) throws Exception {
+		
+		Counter counter = new Counter();
+		
+		CustomThread t1 = new CustomThread(counter);
+		CustomThread t2 = new CustomThread(counter);
+		
+		t1.setName("Thread 1");
+		t2.setName("Thread 2");
+		
+		t1.start();
+		t1.join();
+		t2.start();
+		t2.join();
+		
+		System.out.println("Value of counter in main is "+counter.count);
+	}
+
+}
